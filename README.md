@@ -14,24 +14,31 @@
 Example:
 
 Homepage:
+
 ![Overview Screenshot](screenshots/screenshotOverview.png)
 
 Array:
+
 ![Array Screenshot](screenshots/screenshotArray.png)
 
 Searching:
+
 ![Search Screenshot](screenshots/screenshotSearch.png)
 
 Sorting:
+
 ![Sort Screenshot](screenshots/screenshotSort.png)
 
 Stack:
+
 ![Stack Screenshot](screenshots/screenshotStack.png)
 
 Queue:
+
 ![Queue Screenshot](screenshots/screenshotQueue.png)
 
 Linked List:
+
 ![Linked List Screenshot](screenshots/screenshotLL.png)
 
 ---
