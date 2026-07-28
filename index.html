@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive Data Structures and Algorithms Visualizer — Learn DSA with developer-quality animated visualizations.">
+  <meta name="theme-color" content="#090d16">
+  <title>DSA Visualizer — Interactive Algorithm Visualizations</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Ambient Background Orbs -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-orb ambient-orb-1"></div>
+    <div class="ambient-orb ambient-orb-2"></div>
+    <div class="ambient-orb ambient-orb-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- Loading Screen -->
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader-content">
+      <div class="loader-logo-ring">
+        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="16 18 22 12 16 6"/>
+          <polyline points="8 6 2 12 8 18"/>
+        </svg>
+      </div>
+      <p class="loader-text">Initializing Visualizer Engine...</p>
+      <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- Mobile Sidebar Toggle -->
+  <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle Navigation">
+    <svg class="icon-menu" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>
+    </svg>
+    <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+    </svg>
+  </button>
+
+  <!-- Sidebar Navigation -->
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <a href="#home" class="logo" data-section="home">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+          </svg>
+        </div>
+        <div class="logo-text-group">
+          <span class="logo-text">DSA Visualizer</span>
+          <span class="logo-badge">v1.2</span>
+        </div>
+      </a>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#home" class="nav-link active" data-section="home">
+        <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+        Overview
+      </a>
+
+      <div class="nav-group">
+        <span class="nav-group-title">Arrays &amp; Search</span>
+        <a href="#array-create" class="nav-link" data-algo="array-create">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+          Create Array
+        </a>
+        <a href="#array-insert" class="nav-link" data-algo="array-insert">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          Insert Element
+        </a>
+        <a href="#array-delete" class="nav-link" data-algo="array-delete">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg>
+          Delete Element
+        </a>
+        <a href="#linear-search" class="nav-link" data-algo="linear-search">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+          Linear Search
+        </a>
+        <a href="#binary-search" class="nav-link" data-algo="binary-search">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12h16M12 4v16"/><circle cx="12" cy="12" r="3"/></svg>
+          Binary Search
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <span class="nav-group-title">Sorting Algorithms</span>
+        <a href="#bubble-sort" class="nav-link" data-algo="bubble-sort">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 16V8M12 20V4M17 14V10"/></svg>
+          Bubble Sort
+        </a>
+        <a href="#selection-sort" class="nav-link" data-algo="selection-sort">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h10M8 18h7M3 6h.01M3 12h.01M3 18h.01"/></svg>
+          Selection Sort
+        </a>
+        <a href="#insertion-sort" class="nav-link" data-algo="insertion-sort">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h6"/></svg>
+          Insertion Sort
+        </a>
+        <a href="#merge-sort" class="nav-link" data-algo="merge-sort">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6v12M16 6v12M8 12h8"/></svg>
+          Merge Sort
+        </a>
+        <a href="#quick-sort" class="nav-link" data-algo="quick-sort">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M3 12h18"/><path d="M7 7l10 10M17 7L7 17"/></svg>
+          Quick Sort
+        </a>
+      </div>
+
+      <div class="nav-group">
+        <span class="nav-group-title">Data Structures</span>
+        <a href="#stack" class="nav-link" data-algo="stack">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="14" width="14" height="4" rx="1"/><rect x="5" y="9" width="14" height="4" rx="1"/><rect x="5" y="4" width="14" height="4" rx="1"/></svg>
+          Stack (LIFO)
+        </a>
+        <a href="#queue" class="nav-link" data-algo="queue">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h14M17 12l-3-3M17 12l-3 3"/><path d="M21 8v8"/></svg>
+          Queue (FIFO)
+        </a>
+        <a href="#linked-list" class="nav-link" data-algo="linked-list">
+          <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 12h6"/></svg>
+          Linked List
+        </a>
+      </div>
+
+      <a href="#about" class="nav-link" data-section="about">
+        <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+        About &amp; Docs
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="github-btn">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.395-.135-.345-.72-1.395-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>Open Source</span>
+        <svg class="external-icon" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content Viewport -->
+  <main id="main" class="main">
+
+    <!-- Landing / Home Section -->
+    <section id="home" class="section section-home active">
+      <header class="hero">
+        <div class="hero-badge">
+          <span class="badge-pulse"></span>
+          Developer Toolkit · Open Source
+        </div>
+        <h1 class="hero-title">
+          Visualize algorithms.<br>
+          <span class="hero-title-accent">Master Data Structures.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Interactive, step-by-step visual engine with real-time execution stats, complexity metrics, and state tracing.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" id="start-exploring">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Explore Visualizations
+          </button>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.395-.135-.345-.72-1.395-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            Star on GitHub
+          </a>
+        </div>
+      </header>
+
+      <div class="stats-row">
+        <div class="stat-card">
+          <span class="stat-number">12+</span>
+          <span class="stat-label">Visualizations</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">5</span>
+          <span class="stat-label">Sorting Algos</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">60fps</span>
+          <span class="stat-label">Smooth Engine</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Vanilla JS</span>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon-wrap feature-icon-blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+          </div>
+          <h3>Array &amp; Search</h3>
+          <p>Insertion, deletion, linear &amp; binary search with step pointers and state tracking.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap feature-icon-purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 16V8M12 20V4M17 14V10"/></svg>
+          </div>
+          <h3>Sorting Algorithms</h3>
+          <p>Watch Bubble, Selection, Insertion, Merge, and Quick Sort with comparisons &amp; swaps.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap feature-icon-green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 12h6"/></svg>
+          </div>
+          <h3>Data Structures</h3>
+          <p>Interactive Stack (LIFO), Queue (FIFO), and Linked List pointer manipulations.</p>
+        </div>
+      </div>
+    </section>tion>
+
+    <!-- About Section -->
+    <section id="about" class="section section-about">
+      <div class="about-layout">
+        <div class="about-content">
+          <span class="section-label">Architecture</span>
+          <h2>Designed for clarity and performance</h2>
+          <p>
+            DSA Visualizer is built using pure Vanilla HTML, CSS, and modern ES6 JavaScript with zero external runtime dependencies.
+          </p>
+          <p>
+            It features an asynchronous frame-based animation engine, responsive glassmorphism UI, and real-time execution statistics for learning and technical interviews.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">HTML5 Semantic</span>
+            <span class="tech-tag">CSS Grid &amp; Flex</span>
+            <span class="tech-tag">ES6 Modules</span>
+            <span class="tech-tag">SVG Animations</span>
+          </div>
+        </div>
+        <div class="about-highlights">
+          <div class="highlight-item">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <div>
+              <strong>Zero Build Overhead</strong>
+              <span>Runs directly in any modern browser</span>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            <div>
+              <strong>Fully Responsive Layout</strong>
+              <span>Optimized for mobile, tablet &amp; 4K displays</span>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <div>
+              <strong>Keyboard Controls</strong>
+              <span>Press <kbd>Space</kbd> to Run/Pause, <kbd>R</kbd> to Reset</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visualizer Workspace Section -->
+    <section id="visualizer" class="section section-visualizer">
+      <div class="viz-top-bar">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <span class="breadcrumb-item">Workspace</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+          <span id="breadcrumb-algo" class="breadcrumb-item breadcrumb-current">Algorithm</span>
+        </nav>
+        <div class="viz-actions-top">
+          <span class="kb-hint"><kbd>Space</kbd> Play/Pause</span>
+          <span class="kb-hint"><kbd>R</kbd> Reset</span>
+        </div>
+      </div>
+
+      <div class="viz-header">
+        <h2 id="algo-title">Algorithm Name</h2>
+        <p id="algo-description" class="algo-description">Algorithm summary description goes here.</p>
+      </div>
+
+      <div class="viz-layout">
+        <!-- Sidebar Info Metrics Panel -->
+        <aside class="info-panel">
+          <div class="info-card">
+            <div class="info-card-header">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              <h3>Complexity</h3>
+            </div>
+            <div class="complexity-row">
+              <span class="complexity-label">Time</span>
+              <span id="time-complexity" class="complexity-badge">—</span>
+            </div>
+            <div class="complexity-row">
+              <span class="complexity-label">Space</span>
+              <span id="space-complexity" class="complexity-badge complexity-space">—</span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-header">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+              <h3>Execution Stats</h3>
+            </div>
+            <div class="stat-row">
+              <span>Comparisons</span>
+              <span id="stat-comparisons" class="stat-value">0</span>
+            </div>
+            <div class="stat-row">
+              <span>Swaps / Ops</span>
+              <span id="stat-swaps" class="stat-value">0</span>
+            </div>
+          </div>
+
+          <div class="info-card step-card">
+            <div class="info-card-header">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+              <h3>Current Operation</h3>
+            </div>
+            <p id="step-explanation" class="step-text">Select an algorithm to begin visualization.</p>
+          </div>
+
+          <div class="info-card legend-card">
+            <div class="info-card-header">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+              <h3>Color Legend</h3>
+            </div>
+            <div class="legend-items">
+              <span class="legend-item"><span class="legend-dot legend-compare"></span>Compare</span>
+              <span class="legend-item"><span class="legend-dot legend-swap"></span>Swap</span>
+              <span class="legend-item"><span class="legend-dot legend-sorted"></span>Sorted</span>
+              <span class="legend-item"><span class="legend-dot legend-active"></span>Active</span>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Visualization Canvas Stage -->
+        <div class="viz-canvas-wrapper">
+          <div class="viz-canvas-header">
+            <span class="viz-canvas-label">
+              <span class="pulse-dot"></span> Visualizer Canvas
+            </span>
+            <span class="viz-canvas-status" id="viz-status">Ready</span>
+          </div>
+          <div id="viz-canvas" class="viz-canvas" role="img" aria-label="Algorithm visualization canvas"></div>
+        </div>
+      </div>
+
+      <!-- Input Controls Section -->
+      <div id="input-controls" class="input-controls"></div>
+
+      <!-- Bottom Playback Control Bar -->
+      <div class="controls-bar">
+        <div class="controls-left">
+          <button id="btn-play" class="btn btn-primary" title="Run animation (Space)">
+            <svg class="btn-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <span>Run</span>
+          </button>
+          <button id="btn-pause" class="btn btn-secondary" title="Pause animation" disabled>
+            <svg class="btn-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            <span>Pause</span>
+          </button>
+          <button id="btn-reset" class="btn btn-secondary" title="Reset visualization (R)">
+            <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10M3.51 15a9 9 0 0014.85 3.36L23 14"/></svg>
+            <span>Reset</span>
+          </button>
+        </div>
+        <div class="controls-right">
+          <label for="speed-slider" class="speed-label">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <span>Speed</span>
+          </label>
+          <input type="range" id="speed-slider" class="speed-slider" min="1" max="10" value="5">
+          <span id="speed-value" class="speed-value">5x</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p>Built with Vanilla HTML, CSS &amp; ES6 JavaScript · Developer Quality Open Source</p>
+        <div class="footer-links">
+          <a href="#home" data-section="home">Home</a>
+          <a href="#about" data-section="about">About</a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
