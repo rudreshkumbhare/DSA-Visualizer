@@ -169,22 +169,6 @@ Planned features:
 
 ---
 
-# 🤝 Contributing
-
-Contributions and suggestions are welcome.
-
-Steps:
-
-```bash
-git checkout -b feature-name
-git commit -m "Added new feature"
-git push origin feature-name
-```
-
-Create a Pull Request.
-
----
-
 # 📜 License
 
 Distributed under the MIT License.
