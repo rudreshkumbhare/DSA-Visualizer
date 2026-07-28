@@ -11,11 +11,15 @@
 
 # 📸 Demo & Screenshots
 
-_Add screenshots of the project here after deployment._
-
 Example:
 
-![DSA Visualizer Screenshot](screenshot.png)
+![Overview Screenshot](screenshots/screenshotOverview.png)
+![Array Screenshot](screenshots/screenshotArray.png)
+![Search Screenshot](screenshots/screenshotSearch.png)
+![Sort Screenshot](screenshots/screenshotSort.png)
+![Stack Screenshot](screenshots/screenshotStack.png)
+![Queue Screenshot](screenshots/screenshotQueue.png)
+![Linked List Screenshot](screenshots/screenshotLL.png)
 
 ---
 
